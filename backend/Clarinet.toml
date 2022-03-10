@@ -1,0 +1,11 @@
+[project]
+name = "contracts"
+requirements = []
+
+[contracts.fabulous-frogs]
+path = "contracts/fabulous-frogs.clar"
+depends_on = ["sip009-nft-trait"]
+
+[contracts.sip009-nft-trait]
+path = "contracts/sip009-nft-trait.clar"
+depends_on = []
