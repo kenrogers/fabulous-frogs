@@ -56,7 +56,34 @@ const Home: NextPage = () => {
 
   const mint = async () => {
     const assetAddress = 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM'
-    // Add post conditions here
+const postConditionAddress =
+    userSession.loadUserData().profile.stxAddress.testnet
+const nftPostConditionCode = NonFungibleConditionCode.Owns
+const assetContractName = 'fabulous-frogs'
+const assetName = 'fabulous-frogs'
+const tokenAssetName = bufferCVFromString('fabulous-frogs')
+const nonFungibleAssetInfo = createAssetInfo(
+    assetAddress,
+    assetContractName,
+    assetName
+)
+
+const stxConditionCode = FungibleConditionCode.LessEqual;
+const stxConditionAmount = 50000000; // denoted in microstacks
+
+const postConditions = [
+    makeStandardNonFungiblePostCondition(
+    postConditionAddress,
+    nftPostConditionCode,
+    nonFungibleAssetInfo,
+    tokenAssetName
+    ),
+    makeStandardSTXPostCondition(
+    postConditionAddress,
+    stxConditionCode,
+    stxConditionAmount
+    )
+]
 
     const functionArgs = [
       standardPrincipalCV(
@@ -70,7 +97,7 @@ const Home: NextPage = () => {
       functionName: 'mint',
       functionArgs,
       network,
-      // Don't forget to pass the created post conditions here
+      postConditions,
       appDetails: {
         name: 'Fabulous Frogs',
         icon: 'https://assets.website-files.com/618b0aafa4afde65f2fe38fe/618b0aafa4afde2ae1fe3a1f_icon-isotipo.svg',
