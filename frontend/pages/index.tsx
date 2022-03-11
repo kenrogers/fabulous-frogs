@@ -56,34 +56,34 @@ const Home: NextPage = () => {
 
   const mint = async () => {
     const assetAddress = 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM'
-const postConditionAddress =
-    userSession.loadUserData().profile.stxAddress.testnet
-const nftPostConditionCode = NonFungibleConditionCode.Owns
-const assetContractName = 'fabulous-frogs'
-const assetName = 'fabulous-frogs'
-const tokenAssetName = bufferCVFromString('fabulous-frogs')
-const nonFungibleAssetInfo = createAssetInfo(
-    assetAddress,
-    assetContractName,
-    assetName
-)
-
-const stxConditionCode = FungibleConditionCode.LessEqual;
-const stxConditionAmount = 50000000; // denoted in microstacks
-
-const postConditions = [
-    makeStandardNonFungiblePostCondition(
-    postConditionAddress,
-    nftPostConditionCode,
-    nonFungibleAssetInfo,
-    tokenAssetName
-    ),
-    makeStandardSTXPostCondition(
-    postConditionAddress,
-    stxConditionCode,
-    stxConditionAmount
+    const postConditionAddress =
+      userSession.loadUserData().profile.stxAddress.testnet
+    const nftPostConditionCode = NonFungibleConditionCode.Owns
+    const assetContractName = 'fabulous-frogs'
+    const assetName = 'fabulous-frogs'
+    const tokenAssetName = bufferCVFromString('fabulous-frogs')
+    const nonFungibleAssetInfo = createAssetInfo(
+      assetAddress,
+      assetContractName,
+      assetName
     )
-]
+
+    const stxConditionCode = FungibleConditionCode.LessEqual
+    const stxConditionAmount = 50000000 // denoted in microstacks
+
+    const postConditions = [
+      makeStandardNonFungiblePostCondition(
+        postConditionAddress,
+        nftPostConditionCode,
+        nonFungibleAssetInfo,
+        tokenAssetName
+      ),
+      makeStandardSTXPostCondition(
+        postConditionAddress,
+        stxConditionCode,
+        stxConditionAmount
+      ),
+    ]
 
     const functionArgs = [
       standardPrincipalCV(
